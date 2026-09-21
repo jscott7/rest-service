@@ -1,0 +1,260 @@
+openapi: 3.1.2
+info:
+  title: Test API
+  version: "1.0"
+servers:
+  - url: http://api.server.test/v1
+
+tags:
+  - name: StreamJson
+  - name: Actions
+  - name: JsonTest
+  - name: Test
+  - name: Test2
+
+paths:
+  /streamndJson:
+    post:
+      tags: [StreamJson]
+      requestBody:
+        required: true
+        content:
+          application/x-ndjson:
+            schema:
+              type: string
+              format: binary
+              description: Streaming body; each line conforms to NdjsonRecord
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /jsonTest:
+    get:
+      tags: [JsonTest]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /test:
+    get:
+      tags: [Test]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+
+  /actions:
+    get:
+      tags: [Actions]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+
+  /actions/anyitem:
+    post:
+      tags: [Actions]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  description: For model implementations to appear in swagger this needs to be defined at top level with
+                    in the request schema, not response
+                #  type: string
+                # $ref: './models/model.yaml'
+                  $ref: '#/components/schemas/Model'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+              # $ref: './models/model.yaml'
+              #  $ref: '#/components/schemas/Model'
+
+  /actions/{id}:
+    get:
+      tags: [Actions]
+      parameters:
+        - in : path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /test2:
+    post:
+      tags: [Test2]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  $ref: '#/components/schemas/Action'
+      responses:
+        '201':
+          description: 'Successful Response'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/simple-result'
+components:
+  schemas:
+    simple-result:
+      type: object
+      properties:
+        ValueKey:
+          type: string
+        Data:
+          type: string
+
+    Action:
+      type: object
+      required:
+        - actiontype
+      properties:
+        actiontype:
+          type: string
+      discriminator:
+        propertyName: actiontype
+
+    MetricContainer:
+      type: object
+      properties:
+        MetricInstance:
+          oneOf:
+            - $ref: '#/components/schemas/Metric1'
+            - $ref: '#/components/schemas/Metric2'
+          discriminator:
+            propertyName: name
+
+    Implementation:
+      allOf:
+        - $ref : '#/components/schemas/Action'
+        - type : object
+          properties:
+            InputVal:
+              type: string
+            Metrics:
+              type: array
+              items:
+                oneOf:
+                  - $ref: '#/components/schemas/Metric1'
+                  - $ref: '#/components/schemas/Metric2'
+                discriminator:
+                  propertyName: name
+
+    Implementation2:
+      allOf:
+        - $ref : '#/components/schemas/Action'
+        - type : object
+          properties:
+            InputVal2:
+              type: string
+
+    Model:
+      type: object
+      required:
+        - actiontype
+      properties:
+        modeltype:
+          type: string
+      discriminator:
+        propertyName: modeltype
+
+    SeparateModel:
+      allOf:
+        - $ref: '#/components/schemas/Model'
+        - type: object
+          required:
+            - action_type
+            - details
+            - property1
+          properties:
+            action_type:
+              type: string
+            property1:
+              type: number
+            details:
+              type: string
+
+    SeparateModel2:
+      allOf:
+        - $ref: '#/components/schemas/Model'
+        - type: object
+          properties:
+            field1:
+              type: string
+            details:
+              type: string
+
+    Metric:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+      discriminator:
+        propertyName: name
+
+    MetricWrapper:
+      type: object
+      properties:
+        metric:
+          oneOf:
+            - $ref : '#/components/schemas/Metric1'
+            - $ref : '#/components/schemas/Metric2'
+          discriminator:
+            propertyName: name
+
+    Metric1:
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+
+    Metric2:
+      required:
+        - property
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        property:
+          type: number

@@ -1,0 +1,14 @@
+allOf:
+  - $ref: './model.yaml'
+  - type: object
+    required:
+      - action_type
+      - details
+      - property1
+    properties:
+      action_type:
+        type: string
+      property1:
+        type: number
+      details:
+        type: string
