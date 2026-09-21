@@ -11,6 +11,7 @@ tags:
   - name: JsonTest
   - name: Test
   - name: Test2
+  - name: TestStream
 
 paths:
   /streamndJson:
@@ -25,6 +26,26 @@ paths:
               format: binary
               description: Streaming body; each line conforms to NdjsonRecord
 
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /testBinary:
+    post:
+      tags: [TestStream]
+      summary: Test a binary stream upload
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/BinaryInput'
+              type: string
+              format: binary
       responses:
         '200':
           description: OK
@@ -133,6 +154,10 @@ paths:
                 $ref: '#/components/schemas/simple-result'
 components:
   schemas:
+    BinaryInput:
+        type: string
+        format: binary
+
     simple-result:
       type: object
       properties:

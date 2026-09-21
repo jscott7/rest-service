@@ -99,12 +99,19 @@
                                 <useTags>true</useTags>
 								<dateLibrary>java8</dateLibrary>
 								<interfaceOnly>true</interfaceOnly>
-								<delegatePattern>true</delegatePattern>
+                                <!-- Delegate pattern creates mismatch signature for octet-stream binary inputs -->
+								<delegatePattern>false</delegatePattern>
 								<useSpringController>true</useSpringController>
 								<useSwaggerUI>true</useSwaggerUI>
 								<legacyDiscriminatorBehavior>false</legacyDiscriminatorBehavior>
 								<useOneOfInterfaces>true</useOneOfInterfaces>
                             </configOptions>
+                            <typeMappings>
+                                <typeMapping>file=java.io.InputStream</typeMapping>
+                            </typeMappings>
+                            <importMappings>
+                                <importMapping>java.io.InputStream=java.io.InputStream</importMapping>
+                            </importMappings>
                         </configuration>
                     </execution>
                     <execution>
