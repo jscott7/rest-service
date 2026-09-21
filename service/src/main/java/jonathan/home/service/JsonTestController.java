@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 public class JsonTestController implements JsonTestApi {
 
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
     public JsonTestController(){
         objectMapper = new ObjectMapper();

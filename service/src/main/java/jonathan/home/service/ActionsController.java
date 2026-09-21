@@ -40,7 +40,7 @@ public class ActionsController implements ActionsApi {
 
     @Override
     public ResponseEntity<String> actionsIdGet(String id) {
-        String response = "";
+        String response;
         try {
 
             Class<?> clazz = Class.forName(id);
