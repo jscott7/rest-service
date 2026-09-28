@@ -4,7 +4,8 @@ import time
 
 def nd_line_generator():
     """
-    Newline delimited json generator
+    Newline delimited JSON generator
+    Yields 10000 small JSON strings 1 second apart
     """
     for i in range(10000):
         time.sleep(1)
