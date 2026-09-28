@@ -19,6 +19,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+
+/**
+ * This controller has been created by hand, not using OpenAPI generated interface
+ */
 @RestController
 @Tag(name="StreamndPost", description = "Stream ND Json input")
 public class StreamndJsonController  {
@@ -28,7 +32,6 @@ public class StreamndJsonController  {
 
     public StreamndJsonController(){
         objectMapper = new ObjectMapper();
-       // PrettyPrinter pp;
     }
     @Operation(
         operationId = "streamndJsonPost",

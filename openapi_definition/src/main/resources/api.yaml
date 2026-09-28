@@ -14,9 +14,9 @@ tags:
   - name: TestStream
 
 paths:
-  /streamndJson:
+  /testStreamNdJson:
     post:
-      tags: [StreamJson]
+      tags: [TestStream]
       requestBody:
         required: true
         content:
@@ -43,7 +43,7 @@ paths:
         content:
           application/octet-stream:
             schema:
-              $ref: '#/components/schemas/BinaryInput'
+              #$ref: '#/components/schemas/BinaryInput'
               type: string
               format: binary
       responses:

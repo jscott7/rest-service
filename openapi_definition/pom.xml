@@ -106,6 +106,7 @@
 								<legacyDiscriminatorBehavior>false</legacyDiscriminatorBehavior>
 								<useOneOfInterfaces>true</useOneOfInterfaces>
                             </configOptions>
+                            <!-- These mappings ensure we generate InputStream body parameter, instead of org.springframework.core.io.Resource -->
                             <typeMappings>
                                 <typeMapping>file=java.io.InputStream</typeMapping>
                             </typeMappings>
