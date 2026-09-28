@@ -1,7 +1,3 @@
-import openapi_client
-from openapi_client.rest import ApiException
-from pprint import pprint
-
 import json
 import requests
 import time
