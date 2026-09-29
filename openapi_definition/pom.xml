@@ -100,7 +100,7 @@
 								<dateLibrary>java8</dateLibrary>
 								<interfaceOnly>true</interfaceOnly>
                                 <!-- Delegate pattern creates mismatch signature for octet-stream binary inputs -->
-								<delegatePattern>false</delegatePattern>
+								<delegatePattern>true</delegatePattern>
 								<useSpringController>true</useSpringController>
 								<useSwaggerUI>true</useSwaggerUI>
 								<legacyDiscriminatorBehavior>false</legacyDiscriminatorBehavior>
@@ -108,7 +108,7 @@
                             </configOptions>
                             <!-- These mappings ensure we generate InputStream body parameter, instead of org.springframework.core.io.Resource -->
                             <typeMappings>
-                                <typeMapping>file=java.io.InputStream</typeMapping>
+                                <typeMapping>nd-json-stream=java.io.InputStream</typeMapping>
                             </typeMappings>
                             <importMappings>
                                 <importMapping>java.io.InputStream=java.io.InputStream</importMapping>
