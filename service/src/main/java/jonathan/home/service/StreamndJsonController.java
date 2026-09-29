@@ -65,12 +65,12 @@ public class StreamndJsonController  {
                     }
                 }
                 buf.reset();
+                log.info("Read {} lines", line);
                 if (b == -1) break;
             } else {
                 buf.write(b);
             }
 
-            log.info("Read {} lines", line);
         }
 
         return ResponseEntity.ok("{\"Success\":\"true\"}");
