@@ -7,16 +7,17 @@ def nd_line_generator():
     Newline delimited JSON generator
     Yields 10000 small JSON strings 1 second apart
     """
-    for i in range(10000):
+    for i in range(10):
         time.sleep(1)
         print ("Sending :" + str(i))
         yield json.dumps({"id": i, "name": "element"}, separators=(',', ':')) + "\n"
 
 # Default headers for NDJSON
 default_headers = {"Content-Type": "application/x-ndjson"}
+#default_headers = {}
 
 try:
-    response = requests.post("http://localhost:8080/streamndJson",
+    response = requests.post("http://localhost:8080/testStreamNdJson",
                              data=nd_line_generator(),
                              headers=default_headers, stream=True)
     response.raise_for_status()  # Raise HTTPError for bad responses
