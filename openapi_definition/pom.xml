@@ -175,6 +175,9 @@
                 </executions>
             </plugin>
             <plugin>
+                <!-- As we build an API with InputStream in request payload, this doesn't work with the @RequestBody attribute
+                 because InputStream doesn't support any MediaTypes. Any client Content MediaType will be rejected.
+                 Brute force remove this annotation will solve the immediate problem. Need to consider perhaps Multipart File streaming -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>3.1.0</version>
