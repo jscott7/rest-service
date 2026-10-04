@@ -2,6 +2,8 @@
 A project for creating and consuming REST Services using Swagger yaml API definitions.
 This is intended as a test area to try out API behaviours and understand the build process
 
+https://swagger.io/docs/specification/v3_0/about/
+
 ## Build
 `mvn clean install` to build
 

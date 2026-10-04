@@ -12,9 +12,8 @@ def nd_line_generator():
         print ("Sending :" + str(i))
         yield json.dumps({"id": i, "name": "element"}, separators=(',', ':')) + "\n"
 
-# Default headers for NDJSON
+# Headers for NDJSON
 default_headers = {"Content-Type": "application/x-ndjson"}
-#default_headers = {}
 
 try:
     response = requests.post("http://localhost:8080/testStreamNdJson",
