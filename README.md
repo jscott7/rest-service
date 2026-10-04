@@ -1,14 +1,26 @@
 # rest-service
-A project for creating and consuming REST Services
+A project for creating and consuming REST Services using Swagger yaml API definitions.
+This is intended as a test area to try out API behaviours and understand the build process
 
-## Useful information
+## Build
 `mvn clean install` to build
 
 To run from command line. Change to `service` directory. 
 
+## Run
+From command-line
+
 Run: `mvn sprint-boot:run`
 
-## Calling Test endpoint
+From IDE. I use IntelliJ. Run
+
+* Classpath : `service`
+* Main class: `jonathan.home.service.ServiceApplication`
+* Working directory : Path to `rest-service`
+
+## Sample request body
+
+### test2/
 
 ``` json
 {
@@ -33,4 +45,11 @@ Run: `mvn sprint-boot:run`
 * http://localhost:8080/swagger-ui/index.htm
 * http://localhost:8080/v3/api-docs 
 
+## Python client
+
+The Python API is compiled to `rest-service/python`. The python client `client.py` can be used to call the service
+
+* Use Miniconda
+* Create a new environment
+* Install requests
 
