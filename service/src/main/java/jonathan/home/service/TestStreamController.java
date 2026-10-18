@@ -23,8 +23,8 @@ public class TestStreamController implements TestStreamApi {
     }
 
     /**
-     * Initial implementation taken from StreamndJsonController
-     * @param body  (required)
+     * Split input stream into new-line delimited items
+     * @param body (required) Stream of input data
      * @return Response JSON indicating success or failure
      */
     @Override
@@ -32,12 +32,12 @@ public class TestStreamController implements TestStreamApi {
         try {
             var bif = new BufferedInputStream(body, 64 * 1024);
             int b;
-            long line = 0;
+            long lines = 0;
             ByteArrayOutputStream buf = new ByteArrayOutputStream();
             while (true) {
                 b = bif.read();
                 if (b == -1 || b == '\n') {
-                    line++;
+                    lines++;
                     if (buf.size() > 0) {
                         try {
                             log.info(objectMapper.readTree(buf.toByteArray()).toPrettyString());
@@ -51,10 +51,10 @@ public class TestStreamController implements TestStreamApi {
                     buf.write(b);
                 }
 
-                log.info("Read {} lines", line);
+                log.info("Read {} lines", lines);
             }
 
-            return ResponseEntity.ok("{\"Success\":\"true\"}");
+            return ResponseEntity.ok("{\"Success\":\"true\",\"Items\":" + lines + "}");
         }
         catch(IOException e){
             log.error(e.getMessage());

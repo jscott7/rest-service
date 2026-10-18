@@ -33,6 +33,29 @@ paths:
               schema:
                 type: object
 
+  /testMultiJson:
+    post:
+      tags: [TestStream]
+      summary: Work in progress
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: array
+              description: Multiple JSON files representing individual Requests
+              items:
+                type: string
+                format: binary
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+
   /jsonTest:
     get:
       tags: [JsonTest]
