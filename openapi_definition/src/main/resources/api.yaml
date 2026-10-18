@@ -64,9 +64,10 @@ paths:
   /actions:
     get:
       tags: [Actions]
+      summary: Get all Actions
       responses:
         '200':
-          description: OK
+          description: Array of supported actions
           content:
             application/json:
               schema:
@@ -86,8 +87,6 @@ paths:
                 action:
                   description: For model implementations to appear in swagger this needs to be defined at top level with
                     in the request schema, not response
-                #  type: string
-                # $ref: './models/model.yaml'
                   $ref: '#/components/schemas/Model'
       responses:
         '200':
@@ -102,6 +101,8 @@ paths:
   /actions/{id}:
     get:
       tags: [Actions]
+      summary: Get Action Definition
+      description: Get Definition for supported Action, supported IDs from /actions GET.
       parameters:
         - in : path
           name: id
@@ -119,6 +120,8 @@ paths:
   /test2:
     post:
       tags: [Test2]
+      summary : Test Action
+      description: Include an Action in body
       requestBody:
         required: true
         content:
@@ -130,11 +133,12 @@ paths:
                   $ref: '#/components/schemas/Action'
       responses:
         '201':
-          description: 'Successful Response'
+          description: 'Resource Created'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/simple-result'
+
 components:
   schemas:
     BinaryInput:
