@@ -1,8 +1,5 @@
 package jonathan.home.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.PrettyPrinter;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jonathan.home.api.JsonTestApi;
 import org.springframework.http.ResponseEntity;
 
@@ -14,38 +11,20 @@ import java.util.List;
 @RestController
 public class JsonTestController implements JsonTestApi {
 
-    private final ObjectMapper objectMapper;
-
     public JsonTestController(){
-        objectMapper = new ObjectMapper();
-        PrettyPrinter pp;
     }
 
     @Override
     public ResponseEntity<Object> jsonTestGet(){
-       // var body = createListBody();
-        var body = createListBodyAsType();
+        var body = createListOfDataType();
         return ResponseEntity.ok(body);
     }
 
-    public List<String> createListBody(){
-
-        List<String> body = new ArrayList<>();
-        var dataType1 = new DataType("A", "B", 1);
-        var dataType2 = new DataType("B", "C", 1);
-
-        try {
-            body.add(objectMapper.writeValueAsString(dataType1));
-            body.add(objectMapper.writeValueAsString(dataType2));
-        }
-        catch (JsonProcessingException ex){
-            // do nothing
-        }
-
-        return body;
-    }
-
-    public List<DataType> createListBodyAsType(){
+    /**
+     * Creates a list of {@link DataType}
+     * @return Fixed list, created in function implementation
+     */
+    public List<DataType> createListOfDataType(){
         List<DataType> body = new ArrayList<>();
         var dataType1 = new DataType("A", "B", 1);
         var dataType2 = new DataType("B", "C", 1);

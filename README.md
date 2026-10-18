@@ -44,7 +44,7 @@ From IDE. I use IntelliJ. Run
 ```
 ## Swagger and docs
 
-* http://localhost:8080/swagger-ui/index.htm
+* http://localhost:8080/swagger-ui.html
 * http://localhost:8080/v3/api-docs 
 
 ## Python client

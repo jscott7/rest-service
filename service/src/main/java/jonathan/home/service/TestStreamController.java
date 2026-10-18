@@ -15,7 +15,7 @@ import java.io.InputStream;
 
 @RestController
 public class TestStreamController implements TestStreamApi {
-    private static final Logger log = LoggerFactory.getLogger(StreamndJsonController.class);
+    private static final Logger log = LoggerFactory.getLogger(TestStreamController.class);
     private final ObjectMapper objectMapper;
 
     public TestStreamController(){
@@ -29,7 +29,6 @@ public class TestStreamController implements TestStreamApi {
      */
     @Override
     public ResponseEntity<Object> testStreamNdJsonPost(InputStream body) {
-        // Currently failing because client sends Content-Type 'application/x-ndjson;charset=UTF-8'
         try {
             var bif = new BufferedInputStream(body, 64 * 1024);
             int b;

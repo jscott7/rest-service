@@ -36,9 +36,11 @@ paths:
   /jsonTest:
     get:
       tags: [JsonTest]
+      summary: Returns a list of DataType
+      description: Creates a list of DataType objects in code and return as Json
       responses:
         '200':
-          description: OK
+          description: List of DataType objects
           content:
             application/json:
               schema:
@@ -47,9 +49,11 @@ paths:
   /test:
     get:
       tags: [Test]
+      summary: Get a list of Strings
+      description: Returns a list of three Strings, "A", "B", "C"
       responses:
         '200':
-          description: OK
+          description: JSON array of strings
           content:
             application/json:
               schema:
